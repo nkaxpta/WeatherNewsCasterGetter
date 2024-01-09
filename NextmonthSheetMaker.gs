@@ -1,32 +1,32 @@
 function Nextmonth_and_Sheetset() {
 
   // 実行日の取得
-  let dateToday = new Date();
+  const dateToday = new Date();
 
   // 翌月の月を取得 → 整形
-  let nextMonth = new Date(dateToday.getFullYear(), dateToday.getMonth()+1, 1);
+  const nextMonth = new Date(dateToday.getFullYear(), dateToday.getMonth()+1, 1);
 
   // 作成するシートの名前用
-  let sheetName = Utilities.formatDate(nextMonth, "JST", "yyyy/MM");
+  const sheetName = Utilities.formatDate(nextMonth, "JST", "yyyy/MM");
 
   // 翌月末の最終日の取得 → 整形
-  let nextmonthEndDate = new Date(dateToday.getFullYear(), dateToday.getMonth()+2, 0);
-  let nextmonthLastday = Utilities.formatDate(nextmonthEndDate, "JST", "d");
+  const nextmonthEndDate = new Date(dateToday.getFullYear(), dateToday.getMonth()+2, 0);
+  const nextmonthLastday = Utilities.formatDate(nextmonthEndDate, "JST", "d");
 
-  let spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
-  let sheet = SpreadsheetApp.getActiveSheet();
-  let newSheet = spreadSheet.insertSheet(sheetName).activate();
-  let numberOfSheet = spreadSheet.getNumSheets();
+  const spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const newSheet = spreadSheet.insertSheet(sheetName).activate();
+  const numberOfSheet = spreadSheet.getNumSheets();
   spreadSheet.moveActiveSheet(numberOfSheet);
 
 
-  let dayName_jpn = ["日", "月", "火", "水", "木", "金", "土"];
+  const dayName_jpn = ["日", "月", "火", "水", "木", "金", "土"];
 
   for(let i=1; i<=nextmonthLastday; i++){
-    let nextmonthDate = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), i);
+    const nextmonthDate = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), i);
 
     // 曜日の数値を取得
-    let dayOfWeek = nextmonthDate.getDay(); 
+    const dayOfWeek = nextmonthDate.getDay(); 
 
     // シートの1列目に曜日を記載
     newSheet.getRange(2+i*1, 1).setValue(Utilities.formatDate(nextmonthDate, "JST", "M月d日") + "（" + dayName_jpn[dayOfWeek] +"）");
@@ -49,17 +49,17 @@ function Nextmonth_and_Sheetset() {
 
 function test(){
   // 実行日の取得
-  let dateToday = new Date();
+  const dateToday = new Date();
 
   // 翌月の月を取得 → 整形
-  let nextMonth = new Date(dateToday.getFullYear(), dateToday.getMonth()+1, 1);
+  const nextMonth = new Date(dateToday.getFullYear(), dateToday.getMonth()+1, 1);
   //const nextmonthFormat = Utilities.formatDate(nextMonth, "JST", "M");
 
   // 作成するシートの名前用
-  let sheetName = Utilities.formatDate(nextMonth, "JST", "yyyy/MM");
+  const sheetName = Utilities.formatDate(nextMonth, "JST", "yyyy/MM");
 
   // 翌月末の最終日の取得 → 整形
-  let nextmonthEndDate = new Date(dateToday.getFullYear(), dateToday.getMonth()+2, 0);
+  const nextmonthEndDate = new Date(dateToday.getFullYear(), dateToday.getMonth()+2, 0);
   //const nextmonth_lastday = Utilities.formatDate(nextmonthEndDate, "JST", "d");
   //console.log(nextmonthEndDate);
 }
