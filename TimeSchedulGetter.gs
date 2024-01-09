@@ -70,8 +70,8 @@ function getCasterData() {
 
   //----------------------------------------------------------------
   // シートの日付列と一致しているかどうかを精査 → 一致していれば時間を合わせて書き込み
-  for (const i = 0; i < obj.length; i++) {
-    for (const j = 3; j <= lastRow; j++) {
+  for (let i = 0; i < obj.length; i++) {
+    for (let j = 3; j <= lastRow; j++) {
       if (activeSheet.getRange(j * 1, 1).getValue().includes(obj[i].date) && obj[i].hour === "05:00") {
         activeSheet.getRange(j * 1, 2).setValue(CasterName(CasterTrans(obj[i].caster)));
       }
@@ -123,7 +123,7 @@ function getCasterData() {
 //----------------------------------------------------------------
 // JSON記載の名前成形
 function CasterTrans(castername) {
-  const name = castername;
+  let name = castername;
   if (castername === "ailin") {
     name = "yamagishi";
   }
@@ -148,7 +148,7 @@ function CasterTrans(castername) {
 //----------------------------------------------------------------
 // キャスター名を和名に変換
 function CasterName(castername) {
-  const name = castername;
+  let name = castername;
   if (castername === "yamagishi") {
     name = "山岸 愛梨";
   }
